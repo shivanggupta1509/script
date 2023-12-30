@@ -8,7 +8,7 @@ api_id = '26066257'
 api_hash = '5159005d97d4d671081c998a61577833+'
 phone_number = '+919819678466'
 file_path = 'data.txt'
-group_usernames = ['alterchkbot']
+group_usernames = ['onyxchecker_bot']
 approved_messages = {}
 client = TelegramClient('session_name', api_id, api_hash)
 cmd_file = 'cmds.txt'
@@ -165,8 +165,8 @@ async def forward_approved_messages(event):
     sender = await event.get_sender()
 
 
-    if sender.username == 'alterchkbot':  # Replace 'alterchkbot' with the bot's username
-        if 'APPROVED' in event.message.text:
+    if sender.username == 'onyxchecker_bot':  # Replace 'alterchkbot' with the bot's username
+        if 'Approved!' in event.message.text:
             print("Message contains 'approved'. Forwarding...")
             # Get your friend's chat ID (replace 'loganhaha' with their actual username)
             target_username = 'loganpaulbothehe'
