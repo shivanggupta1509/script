@@ -229,43 +229,26 @@ async def handle_qr_command(event):
     # Delete the original .qr message
     await event.delete()
 
+approved_messages = set()  # Initialize an empty set to store approved messages
+
 @client.on(events.MessageEdited(incoming=True))
 async def forward_approved_messages(event):
     sender = await event.get_sender()
 
-    if sender.username == 'onyxchecker_bot':  # Replace 'alterchkbot' with the bot's username
-        if '1000' in event.message.text:
-            print("Message contains 'approved'. Forwarding...")
-            # Get your friend's chat ID (replace 'loganhaha' with their actual username)
-            target_username = 'loganpaulbothehe'
-            target_entity = await client.get_entity(target_username)
-            # Forward the message containing 'APPROVED' to your friend
-            await client.forward_messages(target_entity, event.message)
-        else:
-            print("Message does not contain 'APPROVED'. Not forwarding.")
-
-    if sender.username == 'alterchkbot':  # Replace 'alterchkbot' with the bot's username
+    if sender.username == 'alterchkbot' and event.is_private:
         if 'APPROVED' in event.message.text:
-            print("Message contains 'approved'. Forwarding...")
-            # Get your friend's chat ID (replace 'loganhaha' with their actual username)
-            target_username = 'loganpaulbothehe'
-            target_entity = await client.get_entity(target_username)
-            # Forward the message containing 'APPROVED' to your friend
-            await client.forward_messages(target_entity, event.message)
+            if event.id not in approved_messages:  # Check if the message has not been forwarded before
+                print("Message contains 'approved'. Forwarding...")
+                target_username = 'loganpaulbothehe'
+                target_entity = await client.get_entity(target_username)
+                await client.forward_messages(target_entity, event.message)
+                approved_messages.add(event.id)  # Add the message ID to the set to mark it as forwarded
+            else:
+                print("Message already forwarded. Not forwarding again.")
         else:
             print("Message does not contain 'APPROVED'. Not forwarding.")
 
 
-    if sender.username == 'alisachkbot':  # Replace 'alterchkbot' with the bot's username
-        if '15$' in event.message.text:
-            print("Message contains 'approved'. Forwarding...")
-            # Get your friend's chat ID (replace 'loganhaha' with their actual username)
-            target_username = 'loganpaulbothehe'
-            target_entity = await client.get_entity(target_username)
-            # Forward the message containing 'APPROVED' to your friend
-            await client.forward_messages(target_entity, event.message)
-        else:
-            print("Message does not contain 'APPROVED'. Not forwarding.")
 # Start the client and tasks
 client.start()
 client.loop.create_task(send_cards())
