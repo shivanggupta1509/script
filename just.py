@@ -11,7 +11,7 @@ file_path = 'data.txt'
 group_usernames = ['alterchkbot']
 approved_messages = {}
 client = TelegramClient('session_name', api_id, api_hash)
-cmd_file = 'commands.txt'
+cmd_file = 'cmds.txt'
 
 # Flags to control sending
 send_cards_flag = True
@@ -82,7 +82,7 @@ def gen_card(cmd, bin_val, exp_m_val, exp_y_val):
     check_digit = (10 - (total % 10)) % 10
     card_number += str(check_digit)
 
-    return f".es {card_number}|{exp_m_val}|{exp_y_val}|{cvv}"
+    return f".{cmd} {card_number}|{exp_m_val}|{exp_y_val}|{cvv}"
 
 async def send_message(client, group_username, card_info):
     await client.send_message(group_username, card_info)
