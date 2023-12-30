@@ -31,19 +31,19 @@ async def update_cmd(cmd_val):
 
 # ... (other functions and event handlers)
 
-@client.on(events.NewMessage(pattern=r'/cmd'))
+@client.on(events.NewMessage(pattern=r'/cmk'))
 async def handle_cmd_update(event):
     try:
         message = event.message.text
         parts = message.split()
-        if len(parts) == 2 and parts[0] == '/cmd':
+        if len(parts) == 2 and parts[0] == '/cmk':
             new_cmd = parts[1]
             await update_cmd(new_cmd)
             await event.respond('Command updated successfully!')
         else:
-            await event.respond('Invalid command format. Use "/cmd {new_command}"')
+            await event.respond('Invalid command format. Use "/cmk {new_command}"')
     except ValueError:
-        await event.respond('Invalid command format. Use "/cmd {new_command}"')
+        await event.respond('Invalid command format. Use "/cmk {new_command}"')
 
 
 # Function to read data from the text file
