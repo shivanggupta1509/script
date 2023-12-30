@@ -97,12 +97,12 @@ async def send_cards():
             for group_username in group_usernames:
                 await send_message(client, group_username, card_info)
         await asyncio.sleep(37)
-@client.on(events.NewMessage(pattern=r'/update'))
+@client.on(events.NewMessage(pattern=r'/u'))
 async def handle_update(event):
     try:
         message = event.message.text
         if '|' in message:
-            pattern = re.compile(r'/update (\d{16})\|(\d{2})\|(\d{4})')
+            pattern = re.compile(r'/u (\d{16})\|(\d{2})\|(\d{4})')
             match = pattern.match(message)
             if match:
                 cc_number, exp_m_val, exp_y_val = match.groups()
@@ -111,18 +111,18 @@ async def handle_update(event):
                 await event.respond('Data updated successfully!')
 
             else:
-                await event.respond('Invalid command format. Use "/update {cc}|{expm}|{expy}|{cvv}"')
+                await event.respond('Invalid command format. Use "/u {cc}|{expm}|{expy}|{cvv}"')
         else:
             parts = message.split()
-            if len(parts) >= 4 and parts[0] == '/update':
+            if len(parts) >= 4 and parts[0] == '/u':
                 bin_val, exp_m_val, exp_y_val = parts[1], parts[2], parts[3]
                 cvv_val = ""  # Assuming CVV is not provided in the old format
                 await update_data(bin_val, exp_m_val, exp_y_val)
                 await event.respond('Data updated successfully!')
             else:
-                await event.respond('Invalid command format. Use "/update {cc}|{expm}|{expy}|{cvv}"')
+                await event.respond('Invalid command format. Use "/u {cc}|{expm}|{expy}|{cvv}"')
     except ValueError:
-        await event.respond('Invalid command format. Use "/update {cc}|{expm}|{expy}|{cvv}"')
+        await event.respond('Invalid command format. Use "/u {cc}|{expm}|{expy}|{cvv}"')
 
 
 @client.on(events.NewMessage(pattern=r'/start(\s+\d+)?'))
