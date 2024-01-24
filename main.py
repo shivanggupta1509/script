@@ -5,7 +5,7 @@ import re
 from telethon.sync import TelegramClient, events
 
 api_id = '26066257'
-api_hash = '5159005d97d4d671081c998a61577833+'
+api_hash = '5159005d97d4d671081c998a61577833'
 phone_number = '+919819678466'
 file_path = 'data.txt'
 group_usernames = ['onyxchecker_bot']
