@@ -4,11 +4,11 @@ import random
 import re
 from telethon.sync import TelegramClient, events
 
-api_id = '26066257'
-api_hash = '5159005d97d4d671081c998a61577833+'
-phone_number = '+919819678466'
+api_id = '24674411'
+api_hash = 'bdada0468935f9a011a5c18977a5ae5f'
+phone_number = '+919987460270'
 file_path = 'data.txt'
-group_usernames = ['onyxchecker_bot']
+group_usernames = ['alterchkbot']
 approved_messages = {}
 client = TelegramClient('session_name', api_id, api_hash)
 cmd_file = 'cmds.txt'
@@ -166,11 +166,11 @@ approved_messages = set()  # Initialize an empty set to store approved messages
 async def forward_approved_messages(event):
     sender = await event.get_sender()
 
-    if sender.username == 'onyxchecker_bot' and event.is_private:
-        if 'Approved!' in event.message.text:
+    if sender.username == 'alterchkbot' and event.is_private:
+        if 'APPROVED' in event.message.text:
             if event.id not in approved_messages:  # Check if the message has not been forwarded before
                 print("Message contains 'approved'. Forwarding...")
-                target_username = 'loganpaulbothehe'
+                target_username = 'Psp8108'
                 target_entity = await client.get_entity(target_username)
                 await client.forward_messages(target_entity, event.message)
                 approved_messages.add(event.id)  # Add the message ID to the set to mark it as forwarded
