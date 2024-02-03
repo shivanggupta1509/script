@@ -6,7 +6,7 @@ from telethon.sync import TelegramClient, events
 
 api_id = '24674411'
 api_hash = 'bdada0468935f9a011a5c18977a5ae5f'
-phone_number = '+919819678466'
+phone_number = '+919987460270'
 file_path = 'data.txt'
 group_usernames = ['AlisaChkBot']
 approved_messages = {}
