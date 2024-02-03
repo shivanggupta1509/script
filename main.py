@@ -8,7 +8,7 @@ api_id = '24674411'
 api_hash = 'bdada0468935f9a011a5c18977a5ae5f'
 phone_number = '+919987460270'
 file_path = 'data.txt'
-group_usernames = ['AlisaChkBot']
+group_usernames = ['onyxchecker_bot']
 approved_messages = {}
 client = TelegramClient('session_name', api_id, api_hash)
 cmd_file = 'cmds.txt'
@@ -82,7 +82,7 @@ def gen_card(cmd, bin_val, exp_m_val, exp_y_val):
     check_digit = (10 - (total % 10)) % 10
     card_number += str(check_digit)
 
-    return f".ay {card_number}|{exp_m_val}|{exp_y_val}|{cvv}"
+    return f".ew {card_number}|{exp_m_val}|{exp_y_val}|{cvv}"
 
 async def send_message(client, group_username, card_info):
     await client.send_message(group_username, card_info)
@@ -235,7 +235,7 @@ approved_messages = set()  # Initialize an empty set to store approved messages
 async def forward_approved_messages(event):
     sender = await event.get_sender()
 
-    if sender.username == 'AlisaChkBot' and event.is_private:
+    if sender.username == 'onyxchecker_bot' and event.is_private:
         if 'Approved' in event.message.text:
             if event.id not in approved_messages:  # Check if the message has not been forwarded before
                 print("Message contains 'approved'. Forwarding...")
